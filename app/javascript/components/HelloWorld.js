@@ -1,10 +1,19 @@
 import React from "react"
 import PropTypes from "prop-types"
+import {Container, Row, Col} from 'react-bootstrap';
+
+import Board from './BoggleComponent/boggle';
+
+
 class HelloWorld extends React.Component {
   render () {
     return (
       <React.Fragment>
-        Greeting: {this.props.greeting}
+        <p>Greetings: {this.props.greeting}</p>
+        <Container>
+          <Board/>
+        </Container>
+        
       </React.Fragment>
     );
   }
