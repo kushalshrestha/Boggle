@@ -62,38 +62,67 @@ export default class Board extends React.Component{
             
         }
 
-        console.log('FIRST MATCH of entered word AVAILABLE AT : '+JSON.stringify(match_pos));
-        // console.log(this.state.possibleMoves[i].possible_moves);
-        // console.log(this.state.possibleMoves[i].possible_moves.length);
-        var position=1; //second letter
-        var match_position2=[];
-        for(var j=0;j<match_pos.length;j++){
-            var index=match_pos[j];
+        
+        var result = this.checkTraverseValidity(1,match_pos,possible_movesList,boggle_alphabets,word);
+        console.log("RESULT: "+result);
+        // console.log('FIRST MATCH of entered word AVAILABLE AT : '+JSON.stringify(match_pos));
+        // // console.log(this.state.possibleMoves[i].possible_moves);
+        // // console.log(this.state.possibleMoves[i].possible_moves.length);
+        // var position=1; //second letter
+        // var match_position2=[];
+        // for(var j=0;j<match_pos.length;j++){
+        //     var index=match_pos[j];
+        //     for(var k=0;k<possible_movesList[index].possible_moves.length;k++){
+        //         if(word.charAt(position)==boggle_alphabets.charAt(possible_movesList[index].possible_moves[k])){
+        //             match_position2.push(possible_movesList[index].possible_moves[k]);
+        //             console.log('j :'+j+' || index : '+index+' || k : '+k+ '|| for '+JSON.stringify(match_pos));
+        //    }
+        //     }
+            
+        // }
+
+        // console.log('THIRD STARTS'+JSON.stringify(match_position2));
+        // var position=2;//third letter
+        // var match_position3=[];
+        // console.log(JSON.stringify(match_position2));
+        // for(var j=0;j<match_position2.length;j++){
+        //     var index=match_position2[j];
+        //     for(var k=0;k<possible_movesList[index].possible_moves.length;k++){
+        //         if(word.charAt(position)==boggle_alphabets.charAt(possible_movesList[index].possible_moves[k])){
+        //             match_position3.push(possible_movesList[index].possible_moves[k]);
+        //             console.log('j :'+j+' || index : '+index+' || k : '+k+ '|| for '+JSON.stringify(match_position2));
+        //    }
+        //     }
+            
+        // }
+        
+    
+    }
+
+    checkTraverseValidity(position,match_position,possible_movesList,boggle_alphabets,entered_word){
+        console.log(position+"st/nd/th letter in entered word matches on following positions: "+JSON.stringify(match_position));
+        var match_position_next=[];
+        
+        for(var j=0;j<match_position.length;j++){
+            var index=match_position[j];
             for(var k=0;k<possible_movesList[index].possible_moves.length;k++){
-                if(word.charAt(position)==boggle_alphabets.charAt(possible_movesList[index].possible_moves[k])){
-                    match_position2.push(possible_movesList[index].possible_moves[k]);
-                    console.log('j :'+j+' || index : '+index+' || k : '+k+ '|| for '+JSON.stringify(match_pos));
+                if(entered_word.charAt(position)==boggle_alphabets.charAt(possible_movesList[index].possible_moves[k])){
+                    match_position_next.push(possible_movesList[index].possible_moves[k]);
+                    console.log(j+'st/nd/th element on the above array'+
+                                'i.e index position on board : '+index+' || has next character matched on : '+k+ '|| ARRAY: '+JSON.stringify(match_position));
            }
             }
             
         }
 
-        console.log('THIRD STARTS'+JSON.stringify(match_position2));
-        var position=2;//third letter
-        var match_position3=[];
-        console.log(JSON.stringify(match_position2));
-        for(var j=0;j<match_position2.length;j++){
-            var index=match_position2[j];
-            for(var k=0;k<possible_movesList[index].possible_moves.length;k++){
-                if(word.charAt(position)==boggle_alphabets.charAt(possible_movesList[index].possible_moves[k])){
-                    match_position3.push(possible_movesList[index].possible_moves[k]);
-                    console.log('j :'+j+' || index : '+index+' || k : '+k+ '|| for '+JSON.stringify(match_position2));
-           }
-            }
-            
+        if(match_position_next.length==0 && position!=(entered_word.length-1)){
+            return false;
+        }else if(match_position_next.length>=1 && position==(entered_word.length-1)){
+            return true;
+        }else{
+            return(this.checkTraverseValidity(position+1,match_position_next,possible_movesList,boggle_alphabets,entered_word));
         }
-        
-    
+
     }
 
     componentDidMount(){
