@@ -1,4 +1,5 @@
 import React from "react";
+import './input-field.css';
 
 export default class InputField extends React.Component{
     constructor(props){
@@ -17,15 +18,21 @@ export default class InputField extends React.Component{
     }
 
     handleSubmit(event){
-        alert(' A name was submitted : '+this.state.value);
+        this.checkData(this.state.value);
+        // alert(' A name was submitted : '+this.state.value);
         event.preventDefault();
+    }
+
+    checkData=(value)=>{
+      this.props.parentCallback(value);
     }
 
     render() {
         return (
           <form onSubmit={this.handleSubmit}>
+            <h1>Enter a word: </h1>
             <label>
-              <input type="text" value={this.state.value} onChange={this.handleChange} />
+              <input className="input-lg" type="text" value={this.state.value} onChange={this.handleChange} />
             </label>
             {/* <input type="submit" value="Submit" /> */}
           </form>

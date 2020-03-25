@@ -2,7 +2,7 @@
     background: #F9C991;
     border: 1px solid #999;
     float: left;
-    font-size: 50px;
+    font-size: var(--fs-h2);
     font-weight: bold;
     line-height: 34px;
     height: 80px;

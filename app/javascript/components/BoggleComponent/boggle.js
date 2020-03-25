@@ -10,16 +10,91 @@ export default class Board extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            box_size: 7,
+            box_size: 4,
             alphabet_distribution:[],
             sum:0,
             isDataLoaded: false,
             selected_alphabets:'',
             isAlphabetGenerated: false,
             isPossibleMoveCalculated: false,
-            possibleMoves: {}
+            possibleMoves: {},
+            entered_value:""
         }
     };
+
+    callbackFunction=(data)=>{
+        this.setState({
+            entered_value : data
+        },()=>{
+            this.validateWord(this.state.entered_value);
+        });
+        
+    }
+
+    validateWord(word){
+        console.log(this.state.selected_alphabets);
+        var boggle_alphabets = this.state.selected_alphabets;
+        var possible_movesList = this.state.possibleMoves;
+        alert('you entered the word : '+word);
+        var first_word = word.charAt(0);
+        var match_pos=[];
+
+        console.log(boggle_alphabets.length);
+        //finding possible indexes of starting word
+
+        
+
+        for(var i=0,j=(boggle_alphabets.length-1);i<boggle_alphabets.length;i++,j--){
+            // console.log(i);
+            if(i>=j){
+                if(boggle_alphabets.charAt(i)==first_word){
+                    match_pos.push(i);
+                }
+                break; 
+            }
+
+            if(boggle_alphabets.charAt(i)==first_word){
+                match_pos.push(i);
+            }
+            if(boggle_alphabets.charAt(j)==first_word){
+                match_pos.push(j);
+            }
+            
+        }
+
+        console.log('FIRST MATCH of entered word AVAILABLE AT : '+JSON.stringify(match_pos));
+        // console.log(this.state.possibleMoves[i].possible_moves);
+        // console.log(this.state.possibleMoves[i].possible_moves.length);
+        var position=1; //second letter
+        var match_position2=[];
+        for(var j=0;j<match_pos.length;j++){
+            var index=match_pos[j];
+            for(var k=0;k<possible_movesList[index].possible_moves.length;k++){
+                if(word.charAt(position)==boggle_alphabets.charAt(possible_movesList[index].possible_moves[k])){
+                    match_position2.push(possible_movesList[index].possible_moves[k]);
+                    console.log('j :'+j+' || index : '+index+' || k : '+k+ '|| for '+JSON.stringify(match_pos));
+           }
+            }
+            
+        }
+
+        console.log('THIRD STARTS'+JSON.stringify(match_position2));
+        var position=2;//third letter
+        var match_position3=[];
+        console.log(JSON.stringify(match_position2));
+        for(var j=0;j<match_position2.length;j++){
+            var index=match_position2[j];
+            for(var k=0;k<possible_movesList[index].possible_moves.length;k++){
+                if(word.charAt(position)==boggle_alphabets.charAt(possible_movesList[index].possible_moves[k])){
+                    match_position3.push(possible_movesList[index].possible_moves[k]);
+                    console.log('j :'+j+' || index : '+index+' || k : '+k+ '|| for '+JSON.stringify(match_position2));
+           }
+            }
+            
+        }
+        
+    
+    }
 
     componentDidMount(){
         this.importReferenceTableValue();
@@ -254,7 +329,7 @@ export default class Board extends React.Component{
     
     
     render(){
-        if(!this.state.isAlphabetGenerated){
+        if(!this.state.isPossibleMoveCalculated){
             return(<div><p>LOADING</p></div>)
         }
         else{
@@ -266,10 +341,11 @@ export default class Board extends React.Component{
                                 {this.createBoggleBoard()}
                             </Col>
                             
-                            <Col xs={4}><InputField/><Button variant="primary">Primary</Button></Col>
+                            <Col xs={4} className="entries"><InputField parentCallback = {this.callbackFunction}/></Col>
 
                             
                         </Row>
+                        <Row><Col><p>Entered: {this.state.entered_value}</p></Col></Row>
                     </Container>
                 
                 </div>
