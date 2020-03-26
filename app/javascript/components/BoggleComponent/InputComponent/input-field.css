@@ -12,3 +12,9 @@ input[type=text] {
     border-radius: 6px;
     margin: 15px;
   }
+
+  input:disabled {
+    background: #ddd;
+    border: 2px solid red;
+  }
+
