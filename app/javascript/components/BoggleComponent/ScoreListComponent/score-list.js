@@ -7,6 +7,7 @@ export default class ScoreList extends React.Component{
         super(props);
         this.state={
             words_list:[],
+            invalid_words_list:[],
             score: 0,
         };
         
@@ -62,7 +63,7 @@ export default class ScoreList extends React.Component{
             <Container>
                 <Jumbotron className="cus-jumbotron">
                 <Button variant="info">
-                Score <Badge variant="light">{this.state.score}</Badge>
+                Score  : <Badge variant="light">{this.state.score}</Badge>
                 <span className="sr-only">unread messages</span>
                 </Button>
                 <br/><br/>
@@ -70,6 +71,7 @@ export default class ScoreList extends React.Component{
                     <p>
                     {word_items}
                     </p>
+                    
                    
                 </Jumbotron>
                 
