@@ -1,6 +1,7 @@
 import React from "react";
 import BoggleSquare from './BoggleSquareComponent/boggle-square';
 import InputField from './InputComponent/input-field';
+import ScoreList from './ScoreListComponent/score-list';
 import {Container, Row, Col,Button} from "react-bootstrap";
 import './boggle.css';
  import mytext from './letter-frequency.json';
@@ -18,8 +19,12 @@ export default class Board extends React.Component{
             isAlphabetGenerated: false,
             isPossibleMoveCalculated: false,
             possibleMoves: {},
-            entered_value:""
+            entered_value:"",
+            valid_word:"",
+            
+
         }
+        
     };
 
     callbackFunction=(data)=>{
@@ -32,14 +37,14 @@ export default class Board extends React.Component{
     }
 
     validateWord(word){
-        console.log(this.state.selected_alphabets);
+        
         var boggle_alphabets = this.state.selected_alphabets;
         var possible_movesList = this.state.possibleMoves;
-        alert('you entered the word : '+word);
+        // alert('you entered the word : '+word);
         var first_word = word.charAt(0);
         var match_pos=[];
 
-        console.log(boggle_alphabets.length);
+        
         //finding possible indexes of starting word
 
         
@@ -65,39 +70,55 @@ export default class Board extends React.Component{
         
         var result = this.checkTraverseValidity(1,match_pos,possible_movesList,boggle_alphabets,word);
         console.log("RESULT: "+result);
-        // console.log('FIRST MATCH of entered word AVAILABLE AT : '+JSON.stringify(match_pos));
-        // // console.log(this.state.possibleMoves[i].possible_moves);
-        // // console.log(this.state.possibleMoves[i].possible_moves.length);
-        // var position=1; //second letter
-        // var match_position2=[];
-        // for(var j=0;j<match_pos.length;j++){
-        //     var index=match_pos[j];
-        //     for(var k=0;k<possible_movesList[index].possible_moves.length;k++){
-        //         if(word.charAt(position)==boggle_alphabets.charAt(possible_movesList[index].possible_moves[k])){
-        //             match_position2.push(possible_movesList[index].possible_moves[k]);
-        //             console.log('j :'+j+' || index : '+index+' || k : '+k+ '|| for '+JSON.stringify(match_pos));
-        //    }
-        //     }
-            
-        // }
-
-        // console.log('THIRD STARTS'+JSON.stringify(match_position2));
-        // var position=2;//third letter
-        // var match_position3=[];
-        // console.log(JSON.stringify(match_position2));
-        // for(var j=0;j<match_position2.length;j++){
-        //     var index=match_position2[j];
-        //     for(var k=0;k<possible_movesList[index].possible_moves.length;k++){
-        //         if(word.charAt(position)==boggle_alphabets.charAt(possible_movesList[index].possible_moves[k])){
-        //             match_position3.push(possible_movesList[index].possible_moves[k]);
-        //             console.log('j :'+j+' || index : '+index+' || k : '+k+ '|| for '+JSON.stringify(match_position2));
-        //    }
-        //     }
-            
-        // }
         
+        if(result===true){
+            this.fetchAPIResponse(word);
+        }
+
+
     
     }
+
+    fetchAPIResponse(word){
+        console.log('API called');
+
+        fetch('https://api.dictionaryapi.dev/api/v1/entries/en/'+word)
+        .then(async response => {
+            
+            const data = await response.json();
+            console.log(JSON.stringify(response));
+            if(!response.ok){
+                const error=(data && data.message);
+                return Promise.reject(error);
+            }
+            if(word.length>=1){
+                console.log("CALLED YO YO");
+                this.setState({
+                    valid_word : word
+                });
+            }
+            // console.log(this.state.valid_word);
+            // this.calculateScore.current.updateScore(this.state.valid_word);
+            
+        })
+        .catch(error =>{
+            console.log('ERROR : '+error);
+        })
+        
+    }
+
+    // calculateScore(word){
+    //     var score = word.length;
+    // }
+
+    // callbackFunction=(data)=>{
+    //     this.setState({
+    //         entered_value : data
+    //     },()=>{
+    //         this.validateWord(this.state.entered_value);
+    //     });
+        
+    // }
 
     checkTraverseValidity(position,match_position,possible_movesList,boggle_alphabets,entered_word){
         console.log(position+"st/nd/th letter in entered word matches on following positions: "+JSON.stringify(match_position));
@@ -370,11 +391,25 @@ export default class Board extends React.Component{
                                 {this.createBoggleBoard()}
                             </Col>
                             
-                            <Col xs={4} className="entries"><InputField parentCallback = {this.callbackFunction}/></Col>
-
-                            
+                            <Col xs={4} className="entries">
+                                <Container>
+                                    <Row>
+                                        <InputField parentCallback = {this.callbackFunction}/>
+                                    </Row>
+                                    <Row>
+                                        <ScoreList value={this.state.valid_word}></ScoreList>
+                                    </Row>
+                                </Container>
+                            </Col>
                         </Row>
-                        <Row><Col><p>Entered: {this.state.entered_value}</p></Col></Row>
+                        <Row>
+                            <Container>
+                                <Row>
+                                    <Col><p>Entered: {this.state.entered_value}</p></Col>
+                                </Row>
+                                
+                            </Container>
+                        </Row>
                     </Container>
                 
                 </div>

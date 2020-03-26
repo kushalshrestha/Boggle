@@ -30,7 +30,7 @@ export default class InputField extends React.Component{
     render() {
         return (
           <form onSubmit={this.handleSubmit}>
-            <h1>Enter a word: </h1>
+            <h4>Enter a word: </h4>
             <label>
               <input className="input-lg" type="text" value={this.state.value} onChange={this.handleChange} />
             </label>
