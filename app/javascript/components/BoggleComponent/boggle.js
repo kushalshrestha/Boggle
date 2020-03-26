@@ -1,10 +1,13 @@
-import React from "react";
+import React,{Component} from "react";
 import BoggleSquare from './BoggleSquareComponent/boggle-square';
 import InputField from './InputComponent/input-field';
 import ScoreList from './ScoreListComponent/score-list';
 import {Container, Row, Col,Button} from "react-bootstrap";
 import './boggle.css';
- import mytext from './letter-frequency.json';
+import mytext from './letter-frequency.json';
+
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default class Board extends React.Component{
 
@@ -74,6 +77,10 @@ export default class Board extends React.Component{
         if(result===true){
             this.fetchAPIResponse(word);
         }
+        if(result===false){
+            alert('FALSE');
+            this.notifyError(word,"0");
+        }
 
 
     
@@ -97,6 +104,8 @@ export default class Board extends React.Component{
                     valid_word : word
                 });
             }
+            this.notifySuccess(word);
+
             // console.log(this.state.valid_word);
             // this.calculateScore.current.updateScore(this.state.valid_word);
             
@@ -105,6 +114,21 @@ export default class Board extends React.Component{
             console.log('ERROR : '+error);
         })
         
+    }
+
+    notifySuccess(word){
+        toast.success(word + " -  is a valid word.",{position: toast.POSITION.BOTTOM_RIGHT});
+    }
+    
+
+    notifyError(word,id){
+        
+        if(id==1){
+            toast.error(word + " -  is not a valid word",{position: toast.POSITION.BOTTOM_RIGHT});
+        }
+        else {
+            toast.error(word + " -  cannot be created from the board",{position: toast.POSITION.BOTTOM_RIGHT});
+        }
     }
 
     // calculateScore(word){
@@ -411,7 +435,7 @@ export default class Board extends React.Component{
                             </Container>
                         </Row>
                     </Container>
-                
+                    <ToastContainer />  
                 </div>
             )
         }
