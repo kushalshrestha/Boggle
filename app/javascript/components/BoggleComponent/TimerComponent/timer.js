@@ -7,7 +7,7 @@ export default class Timer extends React.Component{
         this.state={
             isTimeStarted: false,
             isTimeUp: false,
-            timer_time_ms : 120,  //2 min 30 sec in second
+            timer_time_ms : 600,  //2 min 30 sec in second
             timer_minute: 0,
             timer_second: 0,
             stop_watch: 0

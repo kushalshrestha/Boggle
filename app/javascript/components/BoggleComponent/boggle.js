@@ -2,7 +2,8 @@ import React,{Component} from "react";
 import BoggleSquare from './BoggleSquareComponent/boggle-square';
 import InputField from './InputComponent/input-field';
 import ScoreList from './ScoreListComponent/score-list';
-import {Container, Row, Col,Button} from "react-bootstrap";
+import GameConfiguration from './GameIntroComponent/intro-alert'; 
+import {Container, Row, Col,Button, Alert,ButtonToolbar, ButtonGroup, Card} from "react-bootstrap";
 import './boggle.css';
 import mytext from './letter-frequency.json';
 
@@ -14,16 +15,20 @@ export default class Board extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            box_size: 4,
+            box_size: 6,
+            game_type: "Classic Boggle",
             alphabet_distribution:[],
             sum:0,
             isDataLoaded: false,
             selected_alphabets:'',
             isAlphabetGenerated: false,
             isPossibleMoveCalculated: false,
+            isAlertShown: false,
             possibleMoves: {},
             entered_value:"",
             valid_word:"",
+            show: true, 
+            setShow : true
             
 
         }
@@ -37,6 +42,18 @@ export default class Board extends React.Component{
             this.validateWord(this.state.entered_value);
         });
         
+    }
+
+    callBackFromIntroAlert=(size,type)=>{
+        this.setState({
+            box_size : size,
+            game_type : type,
+            isAlertShown : !this.state.isAlertShown
+
+        },()=>{
+           
+            this.importReferenceTableValue();
+        })
     }
 
     validateWord(word){
@@ -106,9 +123,6 @@ export default class Board extends React.Component{
             }
             this.notifySuccess(word);
 
-            // console.log(this.state.valid_word);
-            // this.calculateScore.current.updateScore(this.state.valid_word);
-            
         })
         .catch(error =>{
             console.log('ERROR : '+error);
@@ -131,19 +145,7 @@ export default class Board extends React.Component{
         }
     }
 
-    // calculateScore(word){
-    //     var score = word.length;
-    // }
-
-    // callbackFunction=(data)=>{
-    //     this.setState({
-    //         entered_value : data
-    //     },()=>{
-    //         this.validateWord(this.state.entered_value);
-    //     });
-        
-    // }
-
+    
     checkTraverseValidity(position,match_position,possible_movesList,boggle_alphabets,entered_word){
         console.log(position+"st/nd/th letter in entered word matches on following positions: "+JSON.stringify(match_position));
         var match_position_next=[];
@@ -170,9 +172,7 @@ export default class Board extends React.Component{
 
     }
 
-    componentDidMount(){
-        this.importReferenceTableValue();
-    }
+    
 
     importReferenceTableValue(){
         console.log('here');
@@ -401,9 +401,23 @@ export default class Board extends React.Component{
         return <div>{boardRow}</div>;
     }
     
+   
     
     render(){
-        if(!this.state.isPossibleMoveCalculated){
+
+        let toggle;
+        if(this.state.game_type==='Classic Boggle'){
+            toggle=null;
+        }else{
+            toggle = (<Button variant="primary" onClick={()=>this.generateAlphabets()}>Toggle</Button>);
+        } 
+
+        if(!this.state.isAlertShown){
+            return(
+            <GameConfiguration start={this.callBackFromIntroAlert}/>
+            )
+        }
+        else if(!this.state.isPossibleMoveCalculated){
             return(<div><p>LOADING</p></div>)
         }
         else{
@@ -411,7 +425,10 @@ export default class Board extends React.Component{
                 <div>
                     <Container>
                         <Row>
+
                             <Col xs={8} className="">
+                            {toggle}
+                            <br/><br/>
                                 {this.createBoggleBoard()}
                             </Col>
                             
