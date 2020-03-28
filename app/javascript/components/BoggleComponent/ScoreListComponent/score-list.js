@@ -41,7 +41,7 @@ export default class ScoreList extends React.Component{
             <Container>
                 <Jumbotron className="cus-jumbotron">
                 <Button variant="info">
-                Score  : <Badge variant="light">{this.state.score}</Badge>
+                Score  : <Badge variant="light" className="cus-score">{this.state.score}</Badge>
                 <span className="sr-only">unread messages</span>
                 </Button>
                 <br/><br/>

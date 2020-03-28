@@ -37,7 +37,7 @@ export default class Board extends React.Component{
 
     callbackFunction=(data)=>{
         this.setState({
-            entered_value : data
+            entered_value : data.toLowerCase()
         },()=>{
             this.validateWord(this.state.entered_value);
         });
@@ -61,6 +61,7 @@ export default class Board extends React.Component{
         var boggle_alphabets = this.state.selected_alphabets;
         var possible_movesList = this.state.possibleMoves;
         // alert('you entered the word : '+word);
+        console.log("WORD.CHARAT(0) :"+word.charAt(0));
         var first_word = word.charAt(0);
         var match_pos=[];
 
@@ -126,6 +127,7 @@ export default class Board extends React.Component{
         })
         .catch(error =>{
             console.log('ERROR : '+error);
+            this.notifyError(word,"1");
         })
         
     }

@@ -11,6 +11,10 @@
     padding: 1rem;
 }
 
+.cus-score{
+    font-size: 150%;
+}
+
 /* 
 .badge {
     display: inline-block;
