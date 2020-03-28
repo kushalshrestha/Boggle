@@ -85,7 +85,7 @@ export default class GameConfiguration extends React.Component{
                                         </Card>
                                         </Col>);
         let box_size_list = this.state.board_size_options.map((board_size,i)=>
-                       <div>
+                       <div key={i}>
                         <label className="btn btn-default">
                         <input type="radio" 
                                 name="board-size"

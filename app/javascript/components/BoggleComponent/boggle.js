@@ -15,7 +15,7 @@ export default class Board extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            box_size: 6,
+            box_size: 4,
             game_type: "Classic Boggle",
             alphabet_distribution:[],
             sum:0,
@@ -147,11 +147,18 @@ export default class Board extends React.Component{
 
     
     checkTraverseValidity(position,match_position,possible_movesList,boggle_alphabets,entered_word){
+        // alert("POSITION: "+position);
+        // alert("Match position "+JSON.stringify(match_position));
+        // alert("boggle alphabet "+boggle_alphabets);
+        // alert("entered word "+entered_word);
         console.log(position+"st/nd/th letter in entered word matches on following positions: "+JSON.stringify(match_position));
+        
         var match_position_next=[];
         
         for(var j=0;j<match_position.length;j++){
+            console.log("LOOP : "+j+" ARRAY: "+match_position);
             var index=match_position[j];
+            console.log("POSSIBLE MOVE index "+ index );
             for(var k=0;k<possible_movesList[index].possible_moves.length;k++){
                 if(entered_word.charAt(position)==boggle_alphabets.charAt(possible_movesList[index].possible_moves[k])){
                     match_position_next.push(possible_movesList[index].possible_moves[k]);
@@ -240,9 +247,11 @@ export default class Board extends React.Component{
     generatePossibleMoves(){
         var available_characters = this.state.selected_alphabets;
         var possiblities={};
-        var box_size=this.state.box_size;
+        let box_size=parseInt(this.state.box_size);
+        // alert('HERE '+typeof(box_size));
     
         for(var i=0; i<available_characters.length; i++){
+            // if(i==0){
             var possible_move_index=[];
             var index_detail={};
             var current_row = Math.floor(i/box_size);
@@ -256,7 +265,12 @@ export default class Board extends React.Component{
             var bottom_left =  this.calculateMoveBottomLeft(i, current_row, box_size, available_characters);
             var top_left =  this.calculateMoveTopLeft(i, current_row, box_size, available_characters);
             var top_right =  this.calculateMoveTopRight(i, current_row, box_size, available_characters);
-        
+            
+            // alert(right+","+bottom+","+
+            //             left+","+top+","+bottom_right+
+            //             ","+bottom_left+","+top_left+","+
+            //             top_right);
+
             if(right!=null){
                 possible_move_index.push(right);
             }
@@ -286,7 +300,7 @@ export default class Board extends React.Component{
                          "possible_moves": possible_move_index};
             
             possiblities[i]=index_detail;
-            
+        // }   
         }
         console.log(JSON.stringify(possiblities));
         this.setState(()=>{
@@ -304,6 +318,13 @@ export default class Board extends React.Component{
     calculateMoveRight(i, current_row, box_size, available_characters){
         var target_index=i+1;
         var target_row=Math.floor(target_index/box_size);
+        // alert(box_size);
+        // alert(typeof(box_size));
+        // alert(i);
+        // alert(typeof(i));
+        // alert(target_index);
+        // alert(typeof(target_index));
+        // alert(target_row);
         // console.log('i : '+i+' Target Row : '+target_row+' Current Row : '+current_row+' Target Index : '+target_index);
         if((target_row-current_row)==0 && target_index<Math.pow(box_size,2)){
             // console.log("RIGHT "+ available_characters.charAt(target_index));
@@ -315,6 +336,13 @@ export default class Board extends React.Component{
         var target_index=i+box_size;
         var target_row=Math.floor(target_index/box_size);
         // console.log('i : '+i+' Target Row : '+target_row+' Current Row : '+current_row+' Target Index : '+target_index);
+        // alert(box_size);
+        // alert(typeof(box_size));
+        // alert(i);
+        // alert(typeof(i));
+        // alert(target_index);
+        // alert(typeof(target_index));
+        // alert(target_row);
         if((target_row-current_row)==1 && target_index<Math.pow(box_size,2)){
             // console.log("BOTTOM "+ available_characters.charAt(target_index));
             return target_index;
