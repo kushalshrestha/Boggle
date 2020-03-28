@@ -14,28 +14,6 @@ export default class ScoreList extends React.Component{
     }
 
     
-   
-   
-    // updateScore(word){
-        
-        
-    //     console.log('called');
-    //     console.log(this.state.score);
-    //     var points = word.length;
-    //     var word_list = this.state.words_list;
-    //     word_list.push(word);
-    //     this.setState({
-    //         score : score+points,
-    //         words_list: word_list
-    //     },()=>{
-    //         console.log(this.state.score);
-    //     });
-        
-
-       
-    //     // return true;
-    // }
-
     render(){
         var points = this.props.value.length;
         console.log(JSON.stringify(word_array));
