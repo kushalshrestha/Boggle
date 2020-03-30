@@ -107,8 +107,13 @@ export default class Board extends React.Component{
     fetchAPIResponse(word){
         console.log('API called');
 
-        fetch('https://api.dictionaryapi.dev/api/v1/entries/en/'+word)
-        .then(async response => {
+        fetch('/welcome/post', {
+             method: 'post',
+             headers: {'Content-Type':'application/json'},
+             body: JSON.stringify({
+              word: word
+             })
+        }).then(async response => {
             
             const data = await response.json();
             console.log(JSON.stringify(response));
@@ -129,6 +134,30 @@ export default class Board extends React.Component{
             console.log('ERROR : '+error);
             this.notifyError(word,"1");
         })
+
+
+        // fetch('https://api.dictionaryapi.dev/api/v1/entries/en/'+word)
+        // .then(async response => {
+            
+        //     const data = await response.json();
+        //     console.log(JSON.stringify(response));
+        //     if(!response.ok){
+        //         const error=(data && data.message);
+        //         return Promise.reject(error);
+        //     }
+        //     if(word.length>=1){
+        //         console.log("CALLED YO YO");
+        //         this.setState({
+        //             valid_word : word
+        //         });
+        //     }
+        //     this.notifySuccess(word);
+
+        // })
+        // .catch(error =>{
+        //     console.log('ERROR : '+error);
+        //     this.notifyError(word,"1");
+        // })
         
     }
 
