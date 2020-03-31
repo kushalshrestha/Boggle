@@ -96,7 +96,7 @@ export default class Board extends React.Component{
             this.fetchAPIResponse(word);
         }
         if(result===false){
-            alert('FALSE');
+            
             this.notifyError(word,"0");
         }
 
