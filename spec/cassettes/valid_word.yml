@@ -1,0 +1,39 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.dictionaryapi.dev/api/v1/entries/en/gem
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.0.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 31 Mar 2020 16:33:09 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '1229'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Apigw-Requestid:
+      - KQ6O5i2soAMEVOw=
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        WwogICAgewogICAgICAgICJ3b3JkIjogImdlbSIsCiAgICAgICAgInBob25ldGljIjogIi9qZW0vIiwKICAgICAgICAib3JpZ2luIjogIk9sZCBFbmdsaXNoIGdpbSwgZnJvbSBMYXRpbiBnZW1tYSDigJhidWQsIGpld2Vs4oCZOyBpbmZsdWVuY2VkIGluIE1pZGRsZSBFbmdsaXNoIGJ5IE9sZCBGcmVuY2ggZ2VtbWUuIiwKICAgICAgICAibWVhbmluZyI6IHsKICAgICAgICAgICAgIm5vdW4iOiBbCiAgICAgICAgICAgICAgICB7CiAgICAgICAgICAgICAgICAgICAgImRlZmluaXRpb24iOiAiQSBwcmVjaW91cyBvciBzZW1pcHJlY2lvdXMgc3RvbmUsIGVzcGVjaWFsbHkgd2hlbiBjdXQgYW5kIHBvbGlzaGVkIG9yIGVuZ3JhdmVkLiIsCiAgICAgICAgICAgICAgICAgICAgInN5bm9ueW1zIjogWwogICAgICAgICAgICAgICAgICAgICAgICAiamV3ZWwiLAogICAgICAgICAgICAgICAgICAgICAgICAicHJlY2lvdXMgc3RvbmUiLAogICAgICAgICAgICAgICAgICAgICAgICAic2VtaS1wcmVjaW91cyBzdG9uZSIsCiAgICAgICAgICAgICAgICAgICAgICAgICJzdG9uZSIsCiAgICAgICAgICAgICAgICAgICAgICAgICJzb2xpdGFpcmUiLAogICAgICAgICAgICAgICAgICAgICAgICAiYnJpbGxpYW50IiwKICAgICAgICAgICAgICAgICAgICAgICAgImJhZ3VldHRlIiwKICAgICAgICAgICAgICAgICAgICAgICAgImNhYm9jaG9uIgogICAgICAgICAgICAgICAgICAgIF0KICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgXSwKICAgICAgICAgICAgInRyYW5zaXRpdmUgdmVyYiI6IFsKICAgICAgICAgICAgICAgIHsKICAgICAgICAgICAgICAgICAgICAiZGVmaW5pdGlvbiI6ICJEZWNvcmF0ZSB3aXRoIG9yIGFzIHdpdGggZ2Vtcy4iLAogICAgICAgICAgICAgICAgICAgICJleGFtcGxlIjogInRpbnkgZHJvcHMgb2Ygc3dlYXQgZ2VtbWVkIGhpcyBmb3JlaGVhZCIKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgXQogICAgICAgIH0KICAgIH0sCiAgICB7CiAgICAgICAgIndvcmQiOiAiR0VNIiwKICAgICAgICAicGhvbmV0aWMiOiAiL2TKksmbbS8iLAogICAgICAgICJtZWFuaW5nIjogewogICAgICAgICAgICAiYWJicmV2aWF0aW9uIjogWwogICAgICAgICAgICAgICAgewogICAgICAgICAgICAgICAgICAgICJkZWZpbml0aW9uIjogIkdyb3VuZC1lZmZlY3QgbWFjaGluZS4iCiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgIF0KICAgICAgICB9CiAgICB9Cl0=
+    http_version: null
+  recorded_at: Tue, 31 Mar 2020 16:33:12 GMT
+recorded_with: VCR 5.1.0

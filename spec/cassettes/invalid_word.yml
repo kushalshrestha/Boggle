@@ -1,0 +1,43 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.dictionaryapi.dev/api/v1/entries/en/adsasj
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.0.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Tue, 31 Mar 2020 16:33:14 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '204'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Apigw-Requestid:
+      - KQ6Pki32IAMEVOw=
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+            "title": "Word not found",
+            "message": "Sorry pal, we couldn't find definitions for the word you were looking for.",
+            "resolution": "You can try the search again or head to the web instead."
+        }
+    http_version: null
+  recorded_at: Tue, 31 Mar 2020 16:33:16 GMT
+recorded_with: VCR 5.1.0

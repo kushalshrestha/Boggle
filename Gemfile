@@ -54,3 +54,12 @@ gem 'webpacker'
 gem 'react-rails'
 gem 'faraday'
 
+
+
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem "vcr"
+  gem "webmock"
+end
+
