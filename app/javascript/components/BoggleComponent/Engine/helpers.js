@@ -1,8 +1,3 @@
-
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
-
 export function generateAlphabets(sum,alphabet_distribution,box_size) {
     var min = 1;
     var max = sum;
@@ -14,7 +9,7 @@ export function generateAlphabets(sum,alphabet_distribution,box_size) {
         var random_number = Math.floor(Math.random()*(max-min)+min);
         for(var j=0; j<size;j++){
             if(random_number<=array_list[j].cumulativefrequency){
-                console.log(array_list[j].cumulativefrequency);
+                // console.log(array_list[j].cumulativefrequency);
                 selected+=array_list[j].letter;
                 break;
             }
@@ -75,13 +70,12 @@ export function generatePossibleMoves(selected_alphabets,size) {
 
         possiblities[i] = index_detail;
     }
-
     return possiblities;
 
 }
 
 
-function calculateMoveRight(i, current_row, box_size) {
+export function calculateMoveRight(i, current_row, box_size) {
     var target_index = i + 1;
     var target_row = Math.floor(target_index / box_size);
     if ((target_row - current_row) == 0 && target_index < Math.pow(box_size, 2)) {
@@ -89,7 +83,7 @@ function calculateMoveRight(i, current_row, box_size) {
     }
     return null;
 }
-function calculateMoveBottom(i, current_row, box_size) {
+export function calculateMoveBottom(i, current_row, box_size) {
     var target_index = i + box_size;
     var target_row = Math.floor(target_index / box_size);
     if ((target_row - current_row) == 1 && target_index < Math.pow(box_size, 2)) {
@@ -97,7 +91,7 @@ function calculateMoveBottom(i, current_row, box_size) {
     }
     return null;
 }
-function calculateMoveLeft(i, current_row, box_size) {
+export function calculateMoveLeft(i, current_row, box_size) {
     var target_index = i - 1;
     var target_row = Math.floor(target_index / box_size);
     if ((target_row - current_row) == 0 && target_index >= 0) {
@@ -105,7 +99,7 @@ function calculateMoveLeft(i, current_row, box_size) {
     }
     return null;
 }
-function calculateMoveTop(i, current_row, box_size) {
+export function calculateMoveTop(i, current_row, box_size) {
     var target_index = i - box_size;
     var target_row = Math.floor(target_index / box_size);
     if ((current_row - target_row) == 1 && target_index >= 0) {
@@ -113,7 +107,7 @@ function calculateMoveTop(i, current_row, box_size) {
     }
     return null;
 }
-function calculateMoveBottomRight(i, current_row, box_size) {
+export function calculateMoveBottomRight(i, current_row, box_size) {
     var target_index = i + (box_size + 1);
     var target_row = Math.floor(target_index / box_size);
     if ((target_row - current_row) == 1 && target_index < Math.pow(box_size, 2)) {
@@ -121,7 +115,7 @@ function calculateMoveBottomRight(i, current_row, box_size) {
     }
     return null;
 }
-function calculateMoveBottomLeft(i, current_row, box_size) {
+export function calculateMoveBottomLeft(i, current_row, box_size) {
     var target_index = i + (box_size - 1);
     var target_row = Math.floor(target_index / box_size);
     if ((target_row - current_row) == 1 && target_index < Math.pow(box_size, 2)) {
@@ -129,7 +123,7 @@ function calculateMoveBottomLeft(i, current_row, box_size) {
     }
     return null;
 }
-function calculateMoveTopLeft(i, current_row, box_size) {
+export function calculateMoveTopLeft(i, current_row, box_size) {
     var target_index = i - (box_size + 1);
     var target_row = Math.floor(target_index / box_size);
     if ((current_row - target_row) == 1 && target_index >= 0) {
@@ -137,7 +131,7 @@ function calculateMoveTopLeft(i, current_row, box_size) {
     }
     return null;
 }
-function calculateMoveTopRight(i, current_row, box_size) {
+export function calculateMoveTopRight(i, current_row, box_size) {
     var target_index = i - (box_size - 1);
     var target_row = Math.floor(target_index / box_size);
     if ((current_row - target_row) == 1 && target_index >= 0) {
@@ -179,13 +173,12 @@ export function validateWord(word,selected_alphabets,possibleMoves) {
 
 
     var result = checkTraverseValidity(1, match_pos, possible_movesList, boggle_alphabets, word);
-    console.log("HERE : "+result);
     return result;
 }
 
 
 
-function checkTraverseValidity(position, match_position, possible_movesList, boggle_alphabets, entered_word) {
+export function checkTraverseValidity(position, match_position, possible_movesList, boggle_alphabets, entered_word) {
     // console.log(position+"st/nd/th letter in entered word matches on following positions: "+JSON.stringify(match_position));
     var match_position_next = [];
 
