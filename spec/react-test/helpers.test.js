@@ -1,9 +1,4 @@
-import React from "react";
-import { render, unmountComponentAtNode } from "react-dom";
-import { act } from "react-dom/test-utils";
-import { generateAlphabets, generatePossibleMoves, calculateMoveRight, calculateMoveBottom, 
-        calculateMoveLeft, calculateMoveTop, calculateMoveBottomRight, calculateMoveBottomLeft,
-        calculateMoveTopLeft, calculateMoveTopRight, validateWord } from './../../app/javascript/components/BoggleComponent/Engine/helpers.js'
+import * as helper from './../../app/javascript/components/BoggleComponent/Engine/helpers.js'
 
 describe("Test generateAlphabets function", () => {
     test("1. Generated alphabets should match Boggle number of boxes", () => {
@@ -15,7 +10,7 @@ describe("Test generateAlphabets function", () => {
             { 'letter': 'd', 'frequency': 2, 'cumulativefrequency': 25 },
         ];
         const box_size = 5;
-        const received = generateAlphabets(sum, alphabet_distribution, box_size);
+        const received = helper.generateAlphabets(sum, alphabet_distribution, box_size);
         const expected = Math.pow(box_size, 2);
 
 
@@ -34,7 +29,7 @@ describe("Test generateAlphabets function", () => {
             { 'letter': 'd', 'frequency': 2, 'cumulativefrequency': 25 },
         ];
         const box_size = 5;
-        const received = generateAlphabets(sum, alphabet_distribution, box_size);
+        const received = helper.generateAlphabets(sum, alphabet_distribution, box_size);
         expect(received).toMatch(new RegExp(/([a-c]+)/));
 
 
@@ -58,7 +53,7 @@ describe("Test generatePossibleMoves function", () => {
             "8": { "value": "i", "possible_moves": [7, 5, 4] }
         }
 
-        const received = generatePossibleMoves(selected_alphabets, size);
+        const received = helper.generatePossibleMoves(selected_alphabets, size);
 
         expect(received[0]).toEqual(expected[0]);
         expect(received[9]).toEqual(expected[9]);
@@ -77,7 +72,7 @@ describe("Test calculateMoveRight function", () => {
         const current_row = 0;
         const box_size = 3;
 
-        const received = calculateMoveRight(i, current_row, box_size)
+        const received = helper.calculateMoveRight(i, current_row, box_size)
 
         expect(received).toEqual(null);
     });
@@ -86,7 +81,7 @@ describe("Test calculateMoveRight function", () => {
         const current_row = 2;
         const box_size = 3;
 
-        const received = calculateMoveRight(i, current_row, box_size)
+        const received = helper.calculateMoveRight(i, current_row, box_size)
 
         expect(received).toEqual(null);
     });
@@ -95,7 +90,7 @@ describe("Test calculateMoveRight function", () => {
         const current_row = 1;
         const box_size = 3;
 
-        const received = calculateMoveRight(i, current_row, box_size)
+        const received = helper.calculateMoveRight(i, current_row, box_size)
 
         expect(received).toEqual(5);
     });
@@ -107,7 +102,7 @@ describe("Test calculateMoveBottom function", () => {
         const current_row = 2;
         const box_size = 3;
 
-        const received = calculateMoveBottom(i, current_row, box_size)
+        const received = helper.calculateMoveBottom(i, current_row, box_size)
 
         expect(received).toEqual(null);
     });
@@ -117,7 +112,7 @@ describe("Test calculateMoveBottom function", () => {
         const current_row = 1;
         const box_size = 3;
 
-        const received = calculateMoveBottom(i, current_row, box_size)
+        const received = helper.calculateMoveBottom(i, current_row, box_size)
 
         expect(received).toEqual(7);
     });
@@ -130,7 +125,7 @@ describe("Test calculateMoveLeft function", () => {
         const current_row = 0;
         const box_size = 3;
 
-        const received = calculateMoveLeft(i, current_row, box_size)
+        const received = helper.calculateMoveLeft(i, current_row, box_size)
 
         expect(received).toEqual(null);
     });
@@ -139,7 +134,7 @@ describe("Test calculateMoveLeft function", () => {
         const current_row = 2;
         const box_size = 3;
 
-        const received = calculateMoveLeft(i, current_row, box_size)
+        const received = helper.calculateMoveLeft(i, current_row, box_size)
 
         expect(received).toEqual(null);
     });
@@ -148,7 +143,7 @@ describe("Test calculateMoveLeft function", () => {
         const current_row = 1;
         const box_size = 3;
 
-        const received = calculateMoveLeft(i, current_row, box_size)
+        const received = helper.calculateMoveLeft(i, current_row, box_size)
 
         expect(received).toEqual(3);
     });
@@ -162,7 +157,7 @@ describe("Test calculateMoveTop function", () => {
         const current_row = 0;
         const box_size = 3;
 
-        const received = calculateMoveTop(i, current_row, box_size)
+        const received = helper.calculateMoveTop(i, current_row, box_size)
 
         expect(received).toEqual(null);
     });
@@ -172,7 +167,7 @@ describe("Test calculateMoveTop function", () => {
         const current_row = 1;
         const box_size = 3;
 
-        const received = calculateMoveTop(i, current_row, box_size)
+        const received = helper.calculateMoveTop(i, current_row, box_size)
 
         expect(received).toEqual(1);
     });
@@ -187,7 +182,7 @@ describe("Test calculateMoveBottomRight function", () => {
         const current_row = 2;
         const box_size = 3;
 
-        const received = calculateMoveBottomRight(i, current_row, box_size)
+        const received = helper.calculateMoveBottomRight(i, current_row, box_size)
 
         expect(received).toEqual(null);
     });
@@ -196,7 +191,7 @@ describe("Test calculateMoveBottomRight function", () => {
         const current_row = 0;
         const box_size = 3;
 
-        const received = calculateMoveBottomRight(i, current_row, box_size)
+        const received = helper.calculateMoveBottomRight(i, current_row, box_size)
 
         expect(received).toEqual(null);
     });
@@ -205,7 +200,7 @@ describe("Test calculateMoveBottomRight function", () => {
         const current_row = 1;
         const box_size = 3;
 
-        const received = calculateMoveBottomRight(i, current_row, box_size)
+        const received = helper.calculateMoveBottomRight(i, current_row, box_size)
 
         expect(received).toEqual(8);
     });
@@ -218,7 +213,7 @@ describe("Test calculateMoveBottomLeft function", () => {
         const current_row = 2;
         const box_size = 3;
 
-        const received = calculateMoveBottomLeft(i, current_row, box_size)
+        const received = helper.calculateMoveBottomLeft(i, current_row, box_size)
 
         expect(received).toEqual(null);
     });
@@ -227,7 +222,7 @@ describe("Test calculateMoveBottomLeft function", () => {
         const current_row = 2;
         const box_size = 3;
 
-        const received = calculateMoveBottomLeft(i, current_row, box_size)
+        const received = helper.calculateMoveBottomLeft(i, current_row, box_size)
 
         expect(received).toEqual(null);
     });
@@ -236,7 +231,7 @@ describe("Test calculateMoveBottomLeft function", () => {
         const current_row = 1;
         const box_size = 3;
 
-        const received = calculateMoveBottomLeft(i, current_row, box_size)
+        const received = helper.calculateMoveBottomLeft(i, current_row, box_size)
 
         expect(received).toEqual(6);
     });
@@ -250,7 +245,7 @@ describe("Test calculateMoveTopLeft function", () => {
         const current_row = 0;
         const box_size = 3;
 
-        const received = calculateMoveTopLeft(i, current_row, box_size)
+        const received = helper.calculateMoveTopLeft(i, current_row, box_size)
 
         expect(received).toEqual(null);
     });
@@ -259,7 +254,7 @@ describe("Test calculateMoveTopLeft function", () => {
         const current_row = 2;
         const box_size = 3;
 
-        const received = calculateMoveTopLeft(i, current_row, box_size)
+        const received = helper.calculateMoveTopLeft(i, current_row, box_size)
 
         expect(received).toEqual(null);
     });
@@ -268,7 +263,7 @@ describe("Test calculateMoveTopLeft function", () => {
         const current_row = 1;
         const box_size = 3;
 
-        const received = calculateMoveTopLeft(i, current_row, box_size)
+        const received = helper.calculateMoveTopLeft(i, current_row, box_size)
 
         expect(received).toEqual(0);
     });
@@ -282,7 +277,7 @@ describe("Test calculateMoveTopRight function", () => {
         const current_row = 0;
         const box_size = 3;
 
-        const received = calculateMoveTopRight(i, current_row, box_size)
+        const received = helper.calculateMoveTopRight(i, current_row, box_size)
 
         expect(received).toEqual(null);
     });
@@ -291,7 +286,7 @@ describe("Test calculateMoveTopRight function", () => {
         const current_row = 2;
         const box_size = 3;
 
-        const received = calculateMoveTopRight(i, current_row, box_size)
+        const received = helper.calculateMoveTopRight(i, current_row, box_size)
 
         expect(received).toEqual(null);
     });
@@ -300,7 +295,7 @@ describe("Test calculateMoveTopRight function", () => {
         const current_row = 1;
         const box_size = 3;
 
-        const received = calculateMoveTopRight(i, current_row, box_size)
+        const received = helper.calculateMoveTopRight(i, current_row, box_size)
 
         expect(received).toEqual(2);
     });
@@ -309,7 +304,7 @@ describe("Test calculateMoveTopRight function", () => {
 
 
 describe("Test validateWord function", () => {
-    test("1. vord validation in 3X3 box Eg: [[r | t | y][a | u | b][i | l | s]]", () => {
+    test("1. Few word validation in 3X3 box Eg: [[r | t | y][a | u | b][i | l | s]]", () => {
         const selected_alphabets = "rryaubils";
         const possibleMoves = {
             "0": { "value": "r", "possible_moves": [1, 3, 4] },
@@ -323,13 +318,17 @@ describe("Test validateWord function", () => {
             "8": { "value": "s", "possible_moves": [7, 5, 4] }
         }
 
-        const received_1 = validateWord("ruby",selected_alphabets,possibleMoves);
-        const received_2 = validateWord("rails",selected_alphabets,possibleMoves);
-        const received_3 = validateWord("ruay",selected_alphabets,possibleMoves);
-        const received_4 = validateWord("a",selected_alphabets,possibleMoves);
-        const received_5 = validateWord("railur",selected_alphabets,possibleMoves);
-        const received_6 = validateWord("rtr",selected_alphabets,possibleMoves);
-        const received_7 = validateWord("rrur",selected_alphabets,possibleMoves);
+        const received_1 = helper.validateWord("ruby",selected_alphabets,possibleMoves);
+        const received_2 = helper.validateWord("rails",selected_alphabets,possibleMoves);
+        const received_3 = helper.validateWord("ruay",selected_alphabets,possibleMoves);
+        const received_4 = helper.validateWord("a",selected_alphabets,possibleMoves);
+        const received_5 = helper.validateWord("railur",selected_alphabets,possibleMoves);
+        const received_6 = helper.validateWord("rtr",selected_alphabets,possibleMoves);
+        const received_7 = helper.validateWord("rrur",selected_alphabets,possibleMoves);
+        const received_8 = helper.validateWord("railuryb",selected_alphabets,possibleMoves);
+        const received_9 = helper.validateWord("railurybs",selected_alphabets,possibleMoves);
+        const received_10 = helper.validateWord("raiurybsl",selected_alphabets,possibleMoves);
+        const received_11 = helper.validateWord("railsbyr",selected_alphabets,possibleMoves);
 
         expect(received_1).toBe(true);
         expect(received_2).toBe(true);
@@ -338,23 +337,11 @@ describe("Test validateWord function", () => {
         expect(received_5).toBe(true);
         expect(received_6).toBe(false);
         expect(received_7).toBe(true);
+        expect(received_8).toBe(true);
+        expect(received_9).toBe(true);
+        expect(received_10).toBe(true);
+        expect(received_11).toBe(true);
+        
     });
-    test("2. Bottom most right corner box should not have another box on its top right corner", () => {
-        const i = 8;
-        const current_row = 2;
-        const box_size = 3;
-
-        const received = calculateMoveTopRight(i, current_row, box_size)
-
-        expect(received).toEqual(null);
-    });
-    test("3. When Box has another box on top right", () => {
-        const i = 4;
-        const current_row = 1;
-        const box_size = 3;
-
-        const received = calculateMoveTopRight(i, current_row, box_size)
-
-        expect(received).toEqual(2);
-    });
+    
 });
