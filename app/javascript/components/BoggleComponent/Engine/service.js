@@ -1,6 +1,6 @@
 
 import Constants from './constants';
-import {notify} from './toast';
+
 
 export default class APIRequestService {
 

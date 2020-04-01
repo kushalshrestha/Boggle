@@ -153,8 +153,7 @@ export function validateWord(word,selected_alphabets,possibleMoves) {
 
 
     //finding possible indexes of starting word
-    for (var i = 0, j = (boggle_alphabets.length - 1); i < boggle_alphabets.length; i++, j--) {
-
+    for (var i = 0, j = (boggle_alphabets.length - 1); i < Math.ceil(boggle_alphabets.length/2); i++, j--) {
         if (i >= j) {
             if (boggle_alphabets.charAt(i) == first_word) {
                 match_pos.push(i);
