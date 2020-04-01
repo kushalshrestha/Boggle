@@ -3,7 +3,7 @@ import BoggleSquare from './BoggleSquareComponent/boggle-square';
 import InputField from './InputComponent/input-field';
 import ScoreList from './ScoreListComponent/score-list';
 import GameConfiguration from './GameIntroComponent/intro-alert';
-import { Container, Row, Col, Button, Alert, ButtonToolbar, ButtonGroup, Card } from "react-bootstrap";
+import { Container, Row, Col, Button} from "react-bootstrap";
 import './boggle.css';
 import mytext from './letter-frequency.json';
 
@@ -11,7 +11,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import APIRequestService from './Engine/service';
 import { notify } from './Engine/toast';
-import { generateAlphabets, generatePossibleMoves ,validateWord} from './Engine/helpers';
+import { generateAlphabets, generatePossibleMoves, validateWord } from './Engine/helpers';
 
 export default class Board extends React.Component {
 
@@ -29,11 +29,7 @@ export default class Board extends React.Component {
             isAlertShown: false,
             possibleMoves: {},
             entered_value: "",
-            valid_word: "",
-            show: true,
-            setShow: true
-
-
+            valid_word: ""
         }
 
     };
@@ -42,8 +38,8 @@ export default class Board extends React.Component {
         this.setState({
             entered_value: data.toLowerCase()
         }, () => {
-            var word=this.state.entered_value;
-            var validation_result = validateWord(word,this.state.selected_alphabets,this.state.possibleMoves)
+            var word = this.state.entered_value;
+            var validation_result = validateWord(word, this.state.selected_alphabets, this.state.possibleMoves)
             if (validation_result === true) {
                 this.fetchAPIResponse(word);
             }
@@ -66,13 +62,14 @@ export default class Board extends React.Component {
         })
     }
 
-    
+
     fetchAPIResponse(word) {
         this.apiRequestService = new APIRequestService(word);
         this.apiRequestService.fetchAPIResponse().then(async response => {
             const data = await response;
+            console.log(data);
             if (data != 200) {
-                const error = (data && data.message);
+                const error = (data);
                 return Promise.reject(error);
             }
             if (word.length > 1) {
@@ -109,7 +106,7 @@ export default class Board extends React.Component {
             }
         }, () => {
             var selected = generateAlphabets(this.state.sum, this.state.alphabet_distribution, this.state.box_size);
-            var possiblities = generatePossibleMoves(selected,this.state.box_size)
+            var possiblities = generatePossibleMoves(selected, this.state.box_size)
             this.setState(() => {
                 return {
                     selected_alphabets: selected,
@@ -124,7 +121,7 @@ export default class Board extends React.Component {
 
     }
 
-    
+
 
     createBoggleBoard = () => {
         console.log('Creating Boggle Board');
