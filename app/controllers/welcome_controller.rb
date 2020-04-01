@@ -16,8 +16,9 @@ class WelcomeController < ApplicationController
     def post
       Rails.logger.debug("Data: #{request.raw_post}")
       Rails.logger.debug("PARAMS : " + word_param)
-      res = Faraday.get 'https://api.dictionaryapi.dev/api/v1/entries/en/'+word_param     
-      render json: res.body
+      res = Faraday.get 'https://api.dictionaryapi.dev/api/v1/entries/en/'+word_param 
+      
+      render json: res.status
     end
 
     private
