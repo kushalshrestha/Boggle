@@ -181,12 +181,7 @@ export default class Board extends React.Component {
                             </Col>
                         </Row>
                         <Row>
-                            <Container>
-                                <Row>
-                                    <Col><p>Entered: {this.state.entered_value}</p></Col>
-                                </Row>
-
-                            </Container>
+                            
                         </Row>
                     </Container>
                     <ToastContainer />

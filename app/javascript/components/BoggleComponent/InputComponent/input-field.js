@@ -34,7 +34,6 @@ export default class InputField extends React.Component{
     }
 
     callbackFunction = (childData) => {
-      console.log("CHILD DATA : "+childData);
       this.setState({
         disable_input : childData
       });
