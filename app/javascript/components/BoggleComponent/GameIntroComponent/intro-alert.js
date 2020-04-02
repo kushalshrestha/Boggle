@@ -111,6 +111,14 @@ export default class GameConfiguration extends React.Component{
                          
                             <Container>
                                 <Row>
+                                    <h5>Rules:</h5>
+                                    <ul>
+                                        <li>Default board: 4 X 4 (Classic Boggle)</li>
+                                        <li>Time: 5 minute</li>
+                                        
+                                    </ul>
+                                </Row>
+                                <Row>
                                     <Col xs={2}>
                                         <p>Select Box Size : </p>
                                         

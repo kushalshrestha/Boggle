@@ -103,23 +103,26 @@ export default class Board extends React.Component {
                 isDataLoaded: true
             }
         }, () => {
-            var selected = generateAlphabets(this.state.sum, this.state.alphabet_distribution, this.state.box_size);
-            var possiblities = generatePossibleMoves(selected, this.state.box_size)
-            this.setState(() => {
-                return {
-                    selected_alphabets: selected,
-                    isAlphabetGenerated: true,
-                    possibleMoves: possiblities,
-                    isPossibleMoveCalculated: true
-                }
-            });
+            this.generateAlphabets();
+            
         }
         );
 
 
     }
 
-
+    generateAlphabets(){
+        var selected = generateAlphabets(this.state.sum, this.state.alphabet_distribution, this.state.box_size);
+        var possiblities = generatePossibleMoves(selected, this.state.box_size)
+        this.setState(() => {
+            return {
+                selected_alphabets: selected,
+                isAlphabetGenerated: true,
+                possibleMoves: possiblities,
+                isPossibleMoveCalculated: true
+            }
+        });   
+    }
 
     createBoggleBoard = () => {
         let boardRow = []
