@@ -21,4 +21,7 @@ Boggle Toggle game is built in Ruby on Rails using ReactJS.
   - For rails API testing, use `bundle exec rspec spec/api_test.rb`
   - For frontend functionality testing, use `yarn test --coverage` 
 
+## Screenshots
+<img src="app/assets/images/boogle.PNG"/>
+<img src="app/assets/images/boogle1.PNG"/>
 
