@@ -16,8 +16,6 @@ export default class ScoreList extends React.Component{
     
     render(){
         var points = this.props.value.length;
-        console.log(JSON.stringify(word_array));
-        console.log("CURRENT PASSED VALUE: "+this.props.value);
         if((this.props.value).length>=2){
             if(this.state.words_list.includes(this.props.value)==false){ 
                 
@@ -30,7 +28,6 @@ export default class ScoreList extends React.Component{
         }
         
         var word_array = this.state.words_list;
-        console.log(JSON.stringify(word_array));
         var word_items = word_array.map((word,i)=>
 
             <Badge variant="success" className="cus-badge" key={i}>{word}</Badge>

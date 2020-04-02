@@ -20,7 +20,6 @@ export default class Timer extends React.Component {
 
     }
     componentDidMount() {
-        console.log(this.state.timer_time_ms);
         this.startTimer();
 
     }

@@ -67,7 +67,6 @@ export default class Board extends React.Component {
         this.apiRequestService = new APIRequestService(word);
         this.apiRequestService.fetchAPIResponse().then(async response => {
             const data = await response;
-            console.log(data);
             if (data != 200) {
                 const error = (data);
                 return Promise.reject(error);
@@ -86,7 +85,6 @@ export default class Board extends React.Component {
     }
 
     importReferenceTableValue() {
-        console.log('here');
         var cumulativefrequency = 0;
         var obj = {};
         var alphabetList = [];
@@ -124,7 +122,6 @@ export default class Board extends React.Component {
 
 
     createBoggleBoard = () => {
-        console.log('Creating Boggle Board');
         let boardRow = []
         for (let i = 0; i < this.state.box_size; i++) {
             let boardColumn = [];
