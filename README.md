@@ -11,8 +11,8 @@ Boggle Toggle game is built in Ruby on Rails using ReactJS.
 
 * Yarn version : 1.22.4
 
-## How do I set up for development
-- Run `yarn install`
+## How do I set up for development (Assuming the above version are installed)
+- Run `yarn install --check-files` to check that the package dependencies in the current project’s package.json match those in yarn’s lock file.
 - Run `bundle install`
 - Run `rails s` to run the game
 
