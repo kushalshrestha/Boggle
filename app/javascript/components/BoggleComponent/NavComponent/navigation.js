@@ -11,7 +11,7 @@ class Navigation extends React.Component {
                 <nav className="navbar navbar-expand-lg navbar-light nav">
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto nav__item nav__list">
-                    <li className="nav-item nav__link"><NavLink to="/" exact activeClassName="active">Home</NavLink></li>
+                    <li className="nav-item nav__link"><NavLink to="/" exact activeClassName="active">Boggle</NavLink></li>
                     {/* <li className="nav-item nav__link"><NavLink to="/highscore" exact activeClassName="active">HighScore</NavLink></li> */}
                     </ul>
                     </div>
