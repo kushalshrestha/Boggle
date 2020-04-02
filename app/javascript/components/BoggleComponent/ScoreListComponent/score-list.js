@@ -12,20 +12,23 @@ export default class ScoreList extends React.Component{
         };
         
     }
-
-    
-    render(){
-        var points = this.props.value.length;
-        if((this.props.value).length>=2){
-            if(this.state.words_list.includes(this.props.value)==false){ 
+    static getDerivedStateFromProps(props, state) {
+        var points = props.value.length;
+        if((props.value).length>=2){
+            if(state.words_list.includes(props.value)==false){ 
                 
-                this.state.words_list.push(this.props.value);
-                this.setState({
-                   score : this.state.score+points 
-                });
+                state.words_list.push(props.value);
+                return {score : state.score+points}
+            
 
             }
+            
         }
+        return null;
+        
+    }
+    
+    render(){
         
         var word_array = this.state.words_list;
         var word_items = word_array.map((word,i)=>
